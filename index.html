@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Template • TodoMVC</title>
+    <link rel="stylesheet" href="node_modules/todomvc-common/base.css">
+    <link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
+</head>
+<!-- 使用模块和控制器 -->
+
+<body ng-app="todoApp"ng-controller='todoCtrl' >
+
+		<section ng-view></section>
+        <!-- This section should be hidden by default and shown when there are todos -->
+        <!-- This footer should hidden by default and shown when there are todos -->
+
+
+    <!-- 1. 引包 -->
+    <script src="node_modules/angular/angular.js"></script>
+	<script src='node_modules/angular-route/angular-route.js'></script>
+	<script src='js/app.js'></script>
+	<script src='js/controller.js'></script>
+	<script src='js/service.js'></script>
+    <script>
+    //创建模块  创建控制器
+    // 第一个 列表显示功能 列表的数据
+    //  $scope.todoList = [{
+    //                 id: 1,
+    //                 isCompleted: true,
+    //                 name: "Taste JavaScript"
+    //             }, {
+    //                 id: 2,
+    //                 isCompleted: false,
+    //                 name: "Buy a unicorn"
+    //             }];
+    // 把todoList里面的数据遍历绑定到列表里面
+    // 第二个实现 在输入框中输入内容 当按回车的时候 将输入的内容添加到列表的后面  输入框外面套一个表单标签form 当你按下回车 就表示表单提交
+    // 第三个 在列表的左边有个复选框 当点击复选框的时候选中或者取消选中列表 选中的时候给当前行加一个completed类名 取消就删掉这个类名
+    // 第四个 实现点击X的时候删除当前行
+    // 第五个 实现点击全选按钮的时候实现列表的全选和取消全选
+    </script>
+</body>
+
+</html>

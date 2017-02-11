@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<!-- 2.在页面上指定一个ng-app 表示body里面的内容属于angular的管辖范围-->
+<!-- 3.在页面中通过ng-controller指令指定创建的控制器名 指定哪个angular的控制器来管理页面(其实所谓的管理页面就是给页面提供数据和行为) -->
+
+<body ng-app="myApp" ng-controller="testController">
+    <input type="button" value="输出" ng-click="$log.log('出')"> {{name}}
+    <!-- 1.引入angular js文件 -->
+    <script src="node_modules/angular/angular.js"></script>
+    <script>
+    // 服务使用的方式就是在控制器里面去多加一个参数 这个参数就是服务的名称
+    var app = angular.module('myApp', []);
+    app.controller('testController', ['$scope', '$log', '$timeout', '$window','$location', function($scope, $log, $timeout, $window,$location) {
+        // 服务 就是帮我们干一些事情的东西 一般是面向一个比较广大的群里
+        // 在代码中的服务 就是 很多人都能使用到的东西 就抽象出来作为一个服务
+        // $log.log('出');
+        $scope.$log = $log;
+        $scope.name = "张三";
+        $timeout(function() {
+            $scope.name = "李四";
+        }, 1000);
+        //$window和普通的window是一样
+        // console.log($window.location.href);
+        $window.addEventListener('resize', function() {
+            // console.log('窗口改变事件');
+        });
+        // console.log($window === window);
+        //$location.url() 获取url的锚点值 不包含#
+        console.log($location);
+        console.log($location.hash());
+    }]);
+    </script>
+</body>
+
+</html>

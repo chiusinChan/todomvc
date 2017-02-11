@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<!-- 2.在页面上指定一个ng-app 表示body里面的内容属于angular的管辖范围-->
+<!-- 3.在页面中通过ng-controller指令指定创建的控制器名 指定哪个angular的控制器来管理页面(其实所谓的管理页面就是给页面提供数据和行为) -->
+
+<body ng-app="myApp" ng-controller="testController">
+    {{name}}
+    <!-- 1.引入angular js文件 -->
+    <script src="node_modules/angular/angular.js"></script>
+    <script>
+    var app = angular.module('myApp', []);
+    app.controller('testController', ['$scope', function($scope) {
+        //脏检查是angularJS 实现双向数据绑定的方式
+        $scope.name = "张三";
+        //这是一个定时器 在定时器里面过了2秒才执行改变$scope.name的值
+        // 由于是手动修改的值 而且还是异步 异步执行的代码 angular是不知道你修改了模型
+        // 那么既然angular不知道修改了模型 那么我们自己手动告诉 我改了模型
+        //怎么通知 就通过手动触发angular的脏检查机制
+        setTimeout(function() {
+        		// $scope.$appy手动触发脏检查机制 可以传入一个参数 这个参数里面的代码就会支持双向绑定
+            $scope.$apply(function() {　　
+                $scope.name = "李四";
+                console.log($scope.name);
+            });　　
+            //或者代码执行完毕后调用$apply()
+            $scope.$apply();
+        }, 2000);
+    }]);
+    </script>
+</body>
+
+</html>
